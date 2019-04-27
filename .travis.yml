@@ -2,7 +2,7 @@ language: ruby
 rvm: truffleruby
 
 env:
-  - TRUFFLERUBY_RECOMPILE_OPENSSL=false
+  - TRUFFLERUBY_RECOMPILE_OPENSSL=true
 install:
   - echo "$rvm_gem_options"
   - cat ~/.rvmrc
