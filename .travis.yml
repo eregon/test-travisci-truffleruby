@@ -1,0 +1,16 @@
+language: ruby
+rvm: truffleruby
+
+env:
+  - TRUFFLERUBY_RECOMPILE_OPENSSL=true
+install:
+  - (for f in $HOME/.rvm/log/*truffleruby*/*.log; do echo $f; cat $f; done) || true
+  - git clone --branch test-travisci https://github.com/eregon/truffleruby.git
+  - cd truffleruby
+script:
+  - ruby -v
+  - export JT='tool/jt.rb'
+  - export AOT_BIN=`which ruby`
+  - $JT test specs --native :library_cext
+  - $JT test mri --native --openssl
+  - ruby -ropen-uri -e 'puts open("https://rubygems.org/") { |f| f.read(1024) }'
