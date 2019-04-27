@@ -19,5 +19,5 @@ script:
   - ruby -ropen-uri -e 'puts open("https://rubygems.org/") { |f| f.read(1024) }'
   - git clone https://github.com/socketry/nio4r.git
   - cd nio4r
-  - bundle install --without development
+  - travis_retry bundle install --without development
   - cd ..
