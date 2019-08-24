@@ -1,20 +1,18 @@
 language: ruby
 rvm: truffleruby
 
-env:
-  - TRUFFLERUBY_RECOMPILE_OPENSSL=true
 install:
   - echo "$rvm_gem_options"
   - cat ~/.rvmrc
   - (for f in $HOME/.rvm/log/*truffleruby*/*.log; do echo $f; cat $f; done) || true
 script:
   - ruby -v
-  - git clone --branch test-travisci https://github.com/eregon/truffleruby.git
+  - git clone --branch vm-19.2.0 https://github.com/oracle/truffleruby.git
   - cd truffleruby
   - export JT='tool/jt.rb'
-  - export AOT_BIN=`which ruby`
-  - $JT test specs --native :library_cext
-  - $JT test mri --native --openssl
+  - export RUBY_BIN=`which ruby`
+  - $JT test specs :library_cext
+  - $JT test mri --openssl
   - cd ..
   - ruby -ropen-uri -e 'puts open("https://rubygems.org/") { |f| f.read(1024) }'
   - git clone https://github.com/socketry/nio4r.git
