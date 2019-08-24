@@ -9,6 +9,7 @@ script:
   - ruby -v
   - gem env
   - gem list
+  - ruby -S bundle --version
   - git clone https://github.com/oracle/truffleruby.git
   - cd truffleruby
   - export JT='tool/jt.rb'
