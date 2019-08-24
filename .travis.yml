@@ -7,7 +7,7 @@ install:
   - (for f in $HOME/.rvm/log/*truffleruby*/*.log; do echo $f; cat $f; done) || true
 script:
   - ruby -v
-  - git clone --branch vm-19.2.0 https://github.com/oracle/truffleruby.git
+  - git clone https://github.com/oracle/truffleruby.git
   - cd truffleruby
   - export JT='tool/jt.rb'
   - export RUBY_BIN=`which ruby`
